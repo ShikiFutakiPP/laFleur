@@ -12,7 +12,5 @@
     <div>Bulbles</div>
     <div>Massifs</div>
     <div>Rosiers</div>
-    dsfjisdofjsdofjs
-    dfsdfsdfsdfsdf
 </body>
 </html>

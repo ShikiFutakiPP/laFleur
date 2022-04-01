@@ -10,6 +10,16 @@
     </title>
 </head>
 <body>
+
+<?php 
+session_start();
+if (!isset($_SESSION['login'])) {
+    echo "<a href='connection.php'> Se connecter </a>";
+} else {
+    echo "<a href='connection.php'> Se déconnecter </a>";
+}
+?>
+
 <h1>
     Liste des catégories
 </h1>

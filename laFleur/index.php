@@ -16,7 +16,7 @@ session_start();
 if (!isset($_SESSION['login'])) {
     echo "<a href='connection.php'> Se connecter </a>";
 } else {
-    echo "<a href='deconnect.php'> Se déconnecter </a>";
+    echo "<a href='deconnect.php'> Se déconnecter </a> <br/> <a href='modif_util.php'> Modifier infos </a>";
 }
 ?>
 

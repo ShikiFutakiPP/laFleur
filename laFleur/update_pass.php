@@ -11,15 +11,20 @@ if ($_REQUEST['pass'] != $_REQUEST['pass_confirm']) {
     $pass = $_REQUEST['pass'];
     $mail = $_SESSION['login'];
 
-    $requeteSql = "UPDATE `utilisateur`
-                    SET `mot_de_passe`=PASSWORD('$pass')
-                    WHERE `adresse_mail`='$mail'";
-    $reponse = $connection->exec($requeteSql);
-    if ($reponse != 0) {
-        $_SESSION['login']=$mail;
-        header('Location: modif_util.php?mod_done=2'); //2 = réussite modif mdp
+    //vérifie qu'il n'y a pas de caractères spéciaux
+    if ((strstr($pass, '\'')) || (strstr($pass, '"')) || (strstr($pass, '<'))) {
+        header('Location: modif_util.php?error=1'); //si caractères interdits, retour page connexion
     } else {
-        header('Location: modif_util.php?error=2'); //2 = échec entrée
-    } 
+        $requeteSql = "UPDATE `utilisateur`
+                        SET `mot_de_passe`=PASSWORD('$pass')
+                        WHERE `adresse_mail`='$mail'";
+        $reponse = $connection->exec($requeteSql);
+        if ($reponse != 0) {
+            $_SESSION['login']=$mail;
+            header('Location: modif_util.php?mod_done=2'); //2 = réussite modif mdp
+        } else {
+            header('Location: modif_util.php?error=2'); //2 = échec entrée
+        } 
+    }
 }
 ?>

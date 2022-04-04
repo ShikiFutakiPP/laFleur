@@ -77,9 +77,14 @@ while ($resultat = $reponse->fetch()) {
 <?php 
 
 if (isset($_REQUEST['error'])) {
+    if ($_REQUEST['error'] == '1') {
+        echo "<br/>
+            Erreur : Caractères interdits";
+        echo "</div>";
+    }
     if ($_REQUEST['error'] == '2') {
         echo "<br/>
-                Echec des modifications";
+            Echec des modifications";
         echo "</div>";
     }
     if ($_REQUEST['error'] == '3') {

@@ -17,8 +17,8 @@ $requeteSql = "UPDATE `utilisateur`
 $reponse = $connection->exec($requeteSql);
 if ($reponse != 0) {
     $_SESSION['login']=$mail;
-    header('Location: modif_util.php?mod_done=1'); //réussite
+    header('Location: modif_util.php?mod_done=1'); //1 = réussite modif coordonnées
 } else {
-    header('Location: modif_util.php?mod_done=0'); //échec
+    header('Location: modif_util.php?error=2'); //2 = échec entrée
 } 
 ?>

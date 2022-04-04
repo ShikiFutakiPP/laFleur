@@ -28,7 +28,8 @@ while ($resultat = $reponse->fetch()) {
     $prenom = $resultat['prenom'];
 }
 ?>
-
+<h1>Modifier mes informations</h1><br/>
+<h2>Modifier mes coordonnées</h2>
 <form enctype="multipart/form-data" class="form-signin"
             action="update_util.php" method="post">
     <div>
@@ -53,9 +54,55 @@ while ($resultat = $reponse->fetch()) {
         <button type="reset">Annuler</button>
         <button type="submit">Modifier</button>
     </div>
-
 </form>
 
+<br/>
+<h2>Modifier mon mot de passe</h2>
+<form enctype="multipart/form-data" class="form-signin"
+            action="update_pass.php" method="post">
+    <div>
+        <label for="pass">Nouveau mot-de-passe : </label>
+        <input type="password" name="pass"/>
+    </div>
+    <div>
+        <label for="pass_confirm">Confirmer le nouveau mot-de-passe : </label>
+        <input type="password" name="pass_confirm"/>
+    </div>
+    <div class="allButtons">
+        <button type="reset">Annuler</button>
+        <button type="submit">Modifier</button>
+    </div>
+</form>
+
+<?php 
+
+if (isset($_REQUEST['error'])) {
+    if ($_REQUEST['error'] == '2') {
+        echo "<br/>
+                Echec des modifications";
+        echo "</div>";
+    }
+    if ($_REQUEST['error'] == '3') {
+        echo "<br/>
+            Erreur : mot-de-passe confirmé différent du mot-de-passe entré";
+        echo "</div>";
+    }
+}
+
+if (isset($_REQUEST['mod_done'])) {
+    if ($_REQUEST['mod_done'] == '1') {
+        echo "<br/>
+                Coordonnées modifiées avec succès";
+        echo "</div>";
+    }
+    if ($_REQUEST['mod_done'] == '2') {
+        echo "<br/>
+            Mot-de-passe modifié avec succès";
+        echo "</div>";
+    }
+}
+
+?>
 
 </body>
 </html>
